@@ -22,6 +22,7 @@
                         "subway-purple": "#b933ad",
                         "subway-lime": "#6cbe45",
                         "subway-brown": "#996633",
+                        "subway-grey": "#808183",
                     },
                     fontFamily: {
                         transit: ["Inter", "Helvetica", "Arial", "sans-serif"],
@@ -39,13 +40,11 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
             pointer-events: none;
-            z-index: 50;
+            z-index: 500;
             opacity: 0.4;
         }
         .dark .paper-grain::before { 
-            opacity: 0.35; 
-            filter: invert(1) brightness(0.6) contrast(1.4); 
-            mix-blend-mode: overlay;
+            opacity: 0.35; filter: invert(1) brightness(0.6) contrast(1.4); mix-blend-mode: overlay;
         }
 
         /* Subway Map Line Glows */
@@ -54,8 +53,6 @@
         
         .glow-red { box-shadow: 0 0 25px rgba(238, 53, 46, 0.8); }
         .glow-blue { box-shadow: 0 0 25px rgba(0, 57, 166, 0.8); }
-        .glow-green { box-shadow: 0 0 25px rgba(0, 147, 60, 0.8); }
-        .glow-orange { box-shadow: 0 0 25px rgba(255, 99, 25, 0.8); }
 
         /* Animations */
         @keyframes revealUp {
@@ -76,19 +73,13 @@
             93% { transform: scale(1.1) rotate(2deg); }
             96% { transform: scale(1.05) rotate(-1deg); }
         }
-        @keyframes footerWave {
-            0%, 60%, 100% { transform: scale(1); opacity: 1; }
-            30% { transform: scale(1.5); opacity: 0.7; }
-        }
 
-        /* Simplified Entrance logic to prevent "double loading" */
         .animate-reveal { animation: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
         .jg-wander { animation: jgFloat 10s ease-in-out infinite; }
         .animate-scrap-entrance { animation: scrapEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards; opacity: 0; }
         .animate-scrap-wiggle { animation: scrapAttentionWiggle 4.5s ease-in-out infinite; }
-        .wave-circle { animation: footerWave 3.5s ease-in-out infinite; }
 
-        /* Physical Photo Assembly */
+        /* Photo Assembly */
         .photo-assembly {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform: rotate(3deg);
@@ -98,19 +89,11 @@
         .polaroid-group:hover .photo-assembly {
             transform: translateY(-20px) rotate(0deg) scale(1.06);
         }
-
         .polaroid {
             box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.05);
-            max-width: 380px;
-            background-color: #fff;
-            position: relative;
-            overflow: hidden;
+            max-width: 380px; background-color: #fff; position: relative; overflow: hidden;
         }
         .dark .polaroid { background-color: #1a1a1a; }
-        .polaroid-group:hover .polaroid { box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
-        .vintage-photo { transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .polaroid-group:hover .vintage-photo { transform: scale(1.05); filter: grayscale(0%); }
-
         .tape {
             position: absolute; width: 100px; height: 35px;
             background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(2px);
@@ -118,66 +101,90 @@
             border: 1px solid rgba(255, 255, 255, 0.1); z-index: 30;
         }
 
-        /* Connections Toggle - Tighter paper, max bold */
         .connections-toggle {
-            position: absolute;
-            bottom: -5px;
-            left: -50px; 
-            background-color: #fccc0a;
-            color: #111;
-            padding: 6px 14px; 
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 20px; 
-            box-shadow: -5px 5px 20px rgba(0,0,0,0.4);
-            z-index: 50;
-            cursor: pointer;
+            position: absolute; bottom: -5px; left: -50px; 
+            background-color: #fccc0a; color: #111; padding: 6px 14px; 
+            font-weight: 900; font-size: 20px; box-shadow: -5px 5px 20px rgba(0,0,0,0.4);
+            z-index: 50; cursor: pointer;
             clip-path: polygon(5% 0%, 100% 10%, 95% 90%, 0% 100%);
-            letter-spacing: -0.08em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            transition: background-color 0.3s ease;
+            letter-spacing: -0.08em; text-transform: uppercase; white-space: nowrap;
         }
-        .polaroid-group:hover .connections-toggle { background-color: #ffd700; }
 
-        /* Connections Panel */
         .connections-scrap {
-            position: absolute;
-            right: 15px; top: 25px;
-            width: 260px;
-            background-color: #fccc0a;
-            padding: 32px;
-            font-family: 'Courier New', monospace;
-            color: #111;
-            box-shadow: -5px 5px 15px rgba(0,0,0,0.1);
-            z-index: 10; 
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            transform: rotate(5deg) translateX(0) scale(0.9);
-            opacity: 0;
-            pointer-events: none;
+            position: absolute; right: 15px; top: 25px; width: 260px;
+            background-color: #fccc0a; padding: 32px; font-family: 'Courier New', monospace; color: #111;
+            z-index: 10; transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: rotate(5deg) translateX(0) scale(0.9); opacity: 0; pointer-events: none;
             clip-path: polygon(2% 0%, 98% 2%, 100% 100%, 85% 95%, 70% 100%, 55% 95%, 40% 100%, 25% 95%, 10% 100%, 0% 95%);
         }
         .polaroid-active .connections-scrap {
-            opacity: 1;
-            pointer-events: auto;
+            opacity: 1; pointer-events: auto;
             transform: rotate(-4deg) translateX(-300px) translateY(20px) scale(1);
             box-shadow: -20px 20px 50px rgba(0,0,0,0.5);
         }
 
         /* Nav & Subway */
-        .disc { transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); flex-shrink: 0; }
+        .disc { transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
         .vignelli-link { position: relative; text-decoration: none; display: inline-block; width: fit-content; }
-        .vignelli-link::after {
-            content: ''; position: absolute; width: 100%; height: 2px;
-            bottom: -2px; left: 0; background-color: currentColor;
-            transform: scaleX(0); transform-origin: right;
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        
+        /* TRANSIT BAR STABILITY */
+        #station-nav.retracted {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 1.5rem !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 450 !important;
+            width: 100% !important;
+            height: 100px !important;
+            margin: 0 !important;
+            padding: 0 2rem !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            border-bottom: 2px solid currentColor !important;
+            background-color: #f4f1ea !important;
+            backdrop-filter: blur(12px);
+            transition: background-color 0.3s ease;
         }
-        .station-link:hover .vignelli-link::after { transform: scaleX(1); transform-origin: left; }
 
-        /* Subway Train Colors */
+        /* Force children to align correctly in transit bar */
+        #station-nav.retracted > * {
+            margin: 0 !important;
+            height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .dark #station-nav.retracted { background-color: #121212 !important; }
+
+        /* Subway Line through the menu */
+        #station-nav.retracted::before {
+            content: ''; position: absolute; left: 0; right: 0; top: 50%;
+            height: 4px; background: rgba(0,0,0,0.15); z-index: -1; transform: translateY(-50%);
+        }
+        .dark #station-nav.retracted::before { background: rgba(255,255,255,0.15); }
+
+        #station-nav.retracted .station-link { space-x: 0.5rem; }
+        #station-nav.retracted .disc { 
+            width: 44px !important; 
+            height: 44px !important; 
+            font-size: 1rem !important; 
+            box-shadow: none !important; 
+            border: 2px solid rgba(0,0,0,0.1); 
+        }
+        .dark #station-nav.retracted .disc { border-color: rgba(255,255,255,0.1); }
+        #station-nav.retracted .vignelli-link { display: inline-block !important; font-size: 0.75rem !important; font-weight: 900 !important; text-transform: uppercase !important; border: none !important; }
+        
+        /* Transition logic */
+        .content-transition { transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease; }
+        .shunting { transform: translateX(100vw); opacity: 0; }
+
+        /* Subway Train Animation (Behind Nav) */
         @keyframes consistMove { 0% { transform: translateX(-150%); } 100% { transform: translateX(100vw); } }
-        .subway-consist-container { position: absolute; top: 0; left: 0; width: 100%; height: 52px; z-index: 60; pointer-events: none; overflow: visible; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .subway-consist-container { position: absolute; top: 0; left: 0; width: 100%; height: 52px; z-index: 5; pointer-events: none; overflow: visible; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .train-track { position: absolute; bottom: 8px; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.15); }
         .dark .train-track { background: rgba(255,255,255,0.15); }
         .subway-train-consist { position: absolute; bottom: 10px; display: flex; gap: 2px; animation: consistMove 16s linear infinite; }
@@ -193,7 +200,15 @@
         .subway-car:first-child::after { content: ""; position: absolute; left: 1px; top: 75%; width: 2px; height: 3px; background: #fff; border-radius: 1px; box-shadow: 0 0 8px 3px #ee352e, 0 0 18px 6px rgba(238, 53, 46, 0.6); }
 
         .fluid-name { font-size: clamp(3.5rem, 12vw, 9rem); }
-        .aside-hidden { display: none !important; }
+        .compact-name { position: fixed; top: 38px; left: 2rem; z-index: 460; pointer-events: auto; }
+        .compact-name h1 { font-size: 1.5rem; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; }
+
+        .manifest-list { transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
+        .video-active .manifest-list { transform: translateX(-120%); opacity: 0; pointer-events: none; }
+        .video-active #video-container { grid-column: span 12; width: 100%; }
+
+        #station-nav .home-link { display: none; }
+        #station-nav.retracted .home-link { display: flex; }
     </style>
 </head>
 <body class="bg-bg-paper dark:bg-bg-transit font-transit text-black dark:text-white transition-colors duration-700 overflow-x-hidden paper-grain">
@@ -220,80 +235,69 @@
         </div>
     </div>
 
-    <!-- Subway Map Structure -->
+    <!-- Map Structure -->
     <div id="v-line" class="map-line-v bg-subway-blue opacity-50 dark:opacity-40 glow-blue z-0"></div>
     <div id="h-line" class="map-line-h bg-subway-green opacity-50 dark:opacity-40 glow-green z-0"></div>
 
-    <header class="relative z-40 px-6 pt-28 pb-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start">
+    <!-- Persistent Brand for Bar mode -->
+    <div id="compact-brand" class="compact-name opacity-0 transition-opacity duration-500 pointer-events-none">
+        <h1 onclick="goHome()" class="uppercase cursor-pointer">Jonathan<br/>Gringauz</h1>
+    </div>
+
+    <header id="page-header" class="relative z-40 px-6 pt-28 pb-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start transition-opacity duration-700">
         <div class="animate-reveal">
-            <h1 class="fluid-name font-black uppercase leading-[0.85] tracking-tighter mb-4 transition-transform duration-500 hover:translate-x-2">
+            <h1 onclick="goHome()" class="fluid-name font-black uppercase leading-[0.85] tracking-tighter mb-4 transition-transform duration-500 hover:translate-x-2 cursor-pointer">
                 Jonathan<br/>Gringauz
             </h1>
             <div class="flex items-center space-x-4">
                 <span class="bg-black text-white dark:bg-white dark:text-black px-4 py-1 text-sm font-bold uppercase tracking-widest">News & Documentary Producer</span>
                 <span class="w-3 h-3 rounded-full bg-subway-red animate-pulse"></span>
-                <span class="text-sm font-bold uppercase tracking-widest opacity-60">New York, NY</span>
-            </div>
-
-            <!-- REFINED JG SECTION: Integrated into header block for mobile -->
-            <div class="mt-8 flex flex-col items-start group md:hidden">
-                <div class="flex items-center space-x-2 mb-2">
-                    <span class="text-[10px] font-black opacity-40 uppercase tracking-tighter">EST. 2001</span>
-                    <div class="flex -space-x-1 jg-wander">
-                        <div class="w-10 h-10 bg-subway-purple rounded-full flex items-center justify-center text-white font-black text-lg italic shadow-lg glow-purple">J</div>
-                        <div class="w-10 h-10 bg-subway-lime rounded-full flex items-center justify-center text-white font-black text-lg italic shadow-lg glow-lime">G</div>
-                    </div>
-                </div>
-                <p class="text-[9px] font-black uppercase tracking-widest opacity-40">
-                    New York City Transit Authority Style Guide
-                </p>
             </div>
         </div>
-        
-        <!-- Desktop JG Sidebar Metadata -->
         <div class="mt-8 md:mt-0 hidden md:flex flex-col items-end group animate-reveal" style="animation-delay: 0.2s;">
             <div class="flex items-center space-x-2 mb-2">
                 <span class="text-[10px] font-black opacity-40 uppercase tracking-tighter">EST. 2001</span>
                 <div class="flex -space-x-1 jg-wander">
-                    <div class="w-12 h-12 bg-subway-purple rounded-full flex items-center justify-center text-white font-black text-xl italic shadow-lg glow-purple">J</div>
-                    <div class="w-12 h-12 bg-subway-lime rounded-full flex items-center justify-center text-white font-black text-xl italic shadow-lg glow-lime">G</div>
+                    <div class="w-12 h-12 bg-subway-purple rounded-full flex items-center justify-center text-white font-black text-xl italic shadow-lg">J</div>
+                    <div class="w-12 h-12 bg-subway-lime rounded-full flex items-center justify-center text-white font-black text-xl italic shadow-lg">G</div>
                 </div>
             </div>
-            <p class="text-[10px] font-black uppercase tracking-widest opacity-40 text-right">
-                New York City<br/>Transit Authority Style Guide
-            </p>
         </div>
     </header>
 
-    <main class="relative z-40 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 pb-24">
+    <main class="relative z-40 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 pb-24 content-transition">
         
-        <!-- Left Nav (Desktop) -->
-        <nav id="station-nav" class="lg:col-span-3 space-y-8 self-center relative animate-reveal" style="animation-delay: 0.4s;">
-            <a href="#" onclick="navigateTo('Index', 'subway-red', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
-                <div class="disc w-16 h-16 rounded-full bg-subway-red flex items-center justify-center text-white text-3xl font-black shadow-lg glow-red group-hover:scale-110">I</div>
-                <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Index</span>
-            </a>
-            <a href="#" onclick="navigateTo('Work', 'subway-blue', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
-                <div class="disc w-16 h-16 rounded-full bg-subway-blue flex items-center justify-center text-white text-3xl font-black shadow-lg glow-blue group-hover:scale-110">W</div>
-                <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Work</span>
-            </a>
-            <a href="#" onclick="navigateTo('Studio', 'subway-green', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
-                <div class="disc w-16 h-16 rounded-full bg-subway-green flex items-center justify-center text-white text-3xl font-black shadow-lg glow-green group-hover:scale-110">S</div>
-                <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Studio</span>
-            </a>
-            <a href="#" onclick="navigateTo('Field Notes', 'subway-orange', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
-                <div class="disc w-16 h-16 rounded-full bg-subway-orange flex items-center justify-center text-white text-3xl font-black shadow-lg glow-orange group-hover:scale-110">F</div>
-                <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Field Notes</span>
-            </a>
-        </nav>
+        <!-- Navigation Container -->
+        <div id="nav-wrapper" class="lg:col-span-3 self-center">
+            <nav id="station-nav" class="space-y-8 relative animate-reveal transition-all duration-700" style="animation-delay: 0.4s;">
+                <a href="#" onclick="goHome()" class="home-link station-link group relative z-10 whitespace-nowrap">
+                    <div class="disc w-16 h-16 rounded-full bg-subway-grey flex items-center justify-center text-white text-3xl font-black shadow-lg group-hover:scale-110">H</div>
+                    <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Home</span>
+                </a>
+                <a href="#" onclick="navigateTo('Work', 'subway-blue', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
+                    <div class="disc w-16 h-16 rounded-full bg-subway-blue flex items-center justify-center text-white text-3xl font-black shadow-lg glow-blue group-hover:scale-110">W</div>
+                    <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Work</span>
+                </a>
+                <a href="#" onclick="navigateTo('Studio', 'subway-green', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
+                    <div class="disc w-16 h-16 rounded-full bg-subway-green flex items-center justify-center text-white text-3xl font-black shadow-lg glow-green group-hover:scale-110">S</div>
+                    <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Studio</span>
+                </a>
+                <a href="#" onclick="navigateTo('Field Notes', 'subway-orange', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
+                    <div class="disc w-16 h-16 rounded-full bg-subway-orange flex items-center justify-center text-white text-3xl font-black shadow-lg glow-orange group-hover:scale-110">F</div>
+                    <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">Field Notes</span>
+                </a>
+                <a href="#" onclick="navigateTo('About', 'subway-brown', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap">
+                    <div class="disc w-16 h-16 rounded-full bg-subway-brown flex items-center justify-center text-white text-3xl font-black shadow-lg">A</div>
+                    <span class="text-3xl font-black uppercase tracking-tighter vignelli-link">About</span>
+                </a>
+            </nav>
+        </div>
 
-        <!-- Center assembly (Mobile prioritized) -->
-        <div id="main-content" class="lg:col-span-9 order-first lg:order-none grid grid-cols-1 lg:grid-cols-3 gap-12 content-view">
+        <div id="main-content" class="lg:col-span-9 grid grid-cols-1 lg:grid-cols-12 gap-12 content-view">
             
-            <div id="polaroid-wrapper" class="lg:col-span-3 flex justify-center items-center relative animate-reveal" style="animation-delay: 0.6s;">
+            <!-- HOME VIEW -->
+            <div id="home-view" class="lg:col-span-12 flex justify-center items-center relative animate-reveal" style="animation-delay: 0.6s;">
                 <div id="polaroid-container" class="polaroid-group relative group cursor-pointer" onclick="togglePolaroid()">
-                    
-                    <!-- Panel tucked behind -->
                     <div class="connections-scrap">
                         <p class="text-[12px] font-black border-b border-black/20 mb-4 uppercase italic">Transfer Terminal</p>
                         <div class="space-y-5">
@@ -301,99 +305,188 @@
                             <a href="#" class="block text-xl font-black italic hover:translate-x-2 transition-transform">→ LINKEDIN</a>
                             <a href="#" class="block text-xl font-black italic hover:translate-x-2 transition-transform">→ EMAIL</a>
                         </div>
-                        <p class="mt-8 text-[9px] font-black opacity-40 uppercase tracking-tighter">NYCTA FIELD UNIT — J.GRINGAUZ</p>
                     </div>
-
-                    <!-- ATTACHED ASSEMBLY -->
                     <div class="photo-assembly">
                         <div id="scrap-indicator" class="connections-toggle animate-scrap-entrance">CONNECTIONS</div>
-
-                        <div class="polaroid relative p-4 border border-black/5 overflow-hidden">
+                        <div class="polaroid relative p-4 border border-black/5">
                             <div class="tape"></div>
-                            <div class="overflow-hidden bg-gray-200">
-                                <img src="https://lh3.googleusercontent.com/d/1Z1C-6WN9QmaOnz1061nqQh5iI8oQiD38" 
-                                     alt="Jonathan Gringauz" 
-                                     class="w-full grayscale brightness-90 vintage-photo">
+                            <div class="overflow-hidden bg-gray-200 aspect-[4/5]">
+                                <img src="https://lh3.googleusercontent.com/d/1Z1C-6WN9QmaOnz1061nqQh5iI8oQiD38" alt="Portrait" class="w-full grayscale brightness-90">
                             </div>
-                            
                             <div class="mt-4 flex justify-end px-1">
-                                <div class="text-right dark:text-white text-black">
-                                    <p class="text-xs font-black uppercase tracking-wider">MAR 24, 2026</p>
-                                </div>
+                                <p class="text-xs font-black uppercase tracking-wider opacity-40">ENTRANCE: PLATFORM 1</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <aside id="manifest-aside" class="space-y-12 flex flex-col justify-center aside-hidden">
-                <section>
-                    <h3 id="aside-header" class="text-[10px] font-black uppercase tracking-[0.3em] mb-6 border-b-2 border-black dark:border-white pb-2">Recent Broadcasts</h3>
-                    <ul class="space-y-6">
-                        <li class="group relative py-1 cursor-pointer">
-                            <span class="text-[10px] font-black opacity-30 block mb-1">01 / 2024</span>
-                            <span class="font-bold text-lg leading-tight transition-all duration-300 group-hover:text-subway-red block">The Midnight Shift: Transit Workers</span>
-                        </li>
-                    </ul>
-                </section>
-            </aside>
+            <!-- WORK VIEW -->
+            <div id="work-view" class="hidden lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full pt-16">
+                <div id="work-manifest" class="lg:col-span-4 manifest-list border-r border-black/10 dark:border-white/10 pr-6">
+                    <h3 class="text-xs font-black uppercase tracking-[0.3em] mb-8 opacity-40">Work Manifest</h3>
+                    <div class="space-y-8">
+                        <div class="group cursor-pointer" onclick="playVideo('Donna | Super 8 Short Film', 'AvXo4rchbVQ')">
+                            <span class="text-[10px] font-black opacity-30 block">SHORT FILM / 2024</span>
+                            <span class="text-xl font-black uppercase leading-tight group-hover:text-subway-blue">Donna | Super 8 Short Film</span>
+                        </div>
+                        <div class="group cursor-pointer" onclick="playVideo('The Midnight Shift', '')">
+                            <span class="text-[10px] font-black opacity-30 block">DOC / 2024</span>
+                            <span class="text-xl font-black uppercase leading-tight group-hover:text-subway-blue">The Midnight Shift</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="video-container" class="lg:col-span-8">
+                    <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div onclick="playVideo('Donna | Super 8 Short Film', 'AvXo4rchbVQ')" class="aspect-video bg-gray-200 dark:bg-zinc-800 relative group cursor-pointer overflow-hidden border border-black/5">
+                            <div class="absolute inset-0 bg-subway-blue opacity-0 group-hover:opacity-40 transition-opacity"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100"><span class="bg-black text-white px-4 py-2 font-black uppercase text-xs tracking-widest">PLAY FILM</span></div>
+                        </div>
+                    </div>
+                    <!-- CINEMATIC PLAYER -->
+                    <div id="full-player" class="hidden w-full aspect-video bg-black flex flex-col items-center justify-center relative">
+                        <button onclick="closeVideo()" class="absolute top-4 right-4 text-white text-[10px] font-black uppercase bg-white/10 px-3 py-1 hover:bg-white/20 transition-colors z-50">Close [Esc]</button>
+                        <iframe id="youtube-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div id="video-placeholder" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <p class="text-white uppercase font-black tracking-widest text-xl" id="current-vid-title">Video Name</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT / CONTACT VIEW -->
+            <div id="about-view" class="hidden lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-12 pt-16">
+                <div class="space-y-8">
+                    <h2 class="text-7xl font-black uppercase tracking-tighter border-b-8 border-black dark:border-white pb-4">About</h2>
+                    <p class="text-2xl font-bold leading-tight">Jonathan Gringauz is a New York-based producer navigating the narratives of infrastructure and urban life.</p>
+                    <p class="opacity-60 leading-relaxed">With a background in both broadcast news and cinematic documentary, Jonathan’s work bridge the gap between immediate reporting and long-term sociological study.</p>
+                </div>
+                <div class="space-y-8 bg-black/5 dark:bg-white/5 p-8 border border-black/10 dark:border-white/10">
+                    <h3 class="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-6">Dispatch / Contact</h3>
+                    <div class="space-y-6">
+                        <a href="mailto:hello@gringauz.com" class="block group">
+                            <span class="text-[10px] font-black block opacity-40">DIRECT LINE</span>
+                            <span class="text-3xl font-black uppercase group-hover:text-subway-orange transition-colors">hello@gringauz.com</span>
+                        </a>
+                        <div>
+                            <span class="text-[10px] font-black block opacity-40">LOCATION</span>
+                            <span class="text-3xl font-black uppercase">BROOKLYN, NY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generic placeholder -->
+            <div id="generic-view" class="hidden lg:col-span-12 pt-16">
+                <h2 id="generic-title" class="text-7xl font-black uppercase tracking-tighter border-b-8 border-black dark:border-white pb-4 mb-12">Studio</h2>
+                <p class="text-xl opacity-60 uppercase font-black">Content Loading...</p>
+            </div>
         </div>
     </main>
 
-    <footer class="relative z-40 border-t border-black/10 dark:border-white/10 px-6 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center opacity-40 hover:opacity-100 transition-opacity animate-reveal" style="animation-delay: 1.2s;">
-        <div class="text-[10px] font-black uppercase tracking-[0.2em] mb-6 md:mb-0 text-center md:text-left">
-            © 2024 JONATHAN GRINGAUZ — NYCTA STANDARD — VIGNELLI DESIGN
-        </div>
-        <div class="flex space-x-2 mt-4 md:mt-0">
-            <div class="w-4 h-4 rounded-full bg-subway-red glow-red wave-circle" style="animation-delay: 0s;"></div>
-            <div class="w-4 h-4 rounded-full bg-subway-orange glow-orange wave-circle" style="animation-delay: 0.3s;"></div>
-            <div class="w-4 h-4 rounded-full bg-subway-yellow glow-yellow wave-circle" style="animation-delay: 0.6s;"></div>
-            <div class="w-4 h-4 rounded-full bg-subway-green glow-green wave-circle" style="animation-delay: 0.9s;"></div>
-            <div class="w-4 h-4 rounded-full bg-subway-blue glow-blue wave-circle" style="animation-delay: 1.2s;"></div>
-            <div class="w-4 h-4 rounded-full bg-subway-purple glow-purple wave-circle" style="animation-delay: 1.5s;"></div>
-        </div>
+    <footer class="relative z-40 border-t border-black/10 dark:border-white/10 px-6 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center opacity-40 hover:opacity-100 transition-opacity">
+        <div class="text-[10px] font-black uppercase tracking-[0.2em] mb-6 md:mb-0">© 2024 JONATHAN GRINGAUZ — NYCTA STANDARD</div>
     </footer>
 
     <!-- Theme Toggle -->
-    <button onclick="document.documentElement.classList.toggle('dark')" class="fixed bottom-8 right-8 z-50 w-12 h-12 bg-white dark:bg-zinc-800 rounded-full shadow-2xl flex items-center justify-center border border-black/10 hover:scale-110 active:scale-90 transition-all duration-300 group">
-        <svg class="w-6 h-6 dark:hidden transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        <svg class="w-6 h-6 hidden dark:block text-subway-yellow transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+    <button onclick="document.documentElement.classList.toggle('dark')" class="fixed bottom-8 right-8 z-[500] w-12 h-12 bg-white dark:bg-zinc-800 rounded-full shadow-2xl flex items-center justify-center border border-black/10 hover:scale-110 active:scale-90 transition-all">
+        <svg class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        <svg class="w-6 h-6 hidden dark:block text-subway-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
     </button>
 
     <script>
-        function togglePolaroid() {
-            document.getElementById('polaroid-container').classList.toggle('polaroid-active');
+        function togglePolaroid() { document.getElementById('polaroid-container').classList.toggle('polaroid-active'); }
+
+        const nav = document.getElementById('station-nav');
+        const vLine = document.getElementById('v-line');
+        const hLine = document.getElementById('h-line');
+        const mainEl = document.querySelector('main');
+        const headerEl = document.getElementById('page-header');
+        const compactBrand = document.getElementById('compact-brand');
+
+        function syncLines() {
+            if (nav.classList.contains('retracted')) return;
+            const navRect = nav.getBoundingClientRect();
+            vLine.style.left = (navRect.left + 32) + 'px';
+            const activeDisc = document.querySelector('.station-link.scrolled-active .disc') || nav.querySelector('.disc');
+            if (activeDisc) hLine.style.top = (activeDisc.getBoundingClientRect().top + window.scrollY + (activeDisc.offsetHeight / 2)) + 'px';
+        }
+
+        function dockLine(element) {
+            if (nav.classList.contains('retracted')) return;
+            const disc = element.querySelector('.disc');
+            if(!disc) return;
+            const rect = disc.getBoundingClientRect();
+            hLine.style.top = (rect.top + window.scrollY + (rect.height / 2)) + 'px';
+            const discColor = window.getComputedStyle(disc).backgroundColor;
+            hLine.style.backgroundColor = discColor;
+        }
+
+        function goHome() {
+            nav.classList.remove('retracted');
+            headerEl.classList.remove('opacity-0', 'pointer-events-none');
+            compactBrand.classList.add('opacity-0', 'pointer-events-none');
+            showView('home-view');
+            closeVideo();
+            setTimeout(syncLines, 100);
+        }
+
+        function navigateTo(view, colorClass, element) {
+            // Instant retraction state to prevent jumping
+            nav.classList.add('retracted');
+            headerEl.classList.add('opacity-0', 'pointer-events-none');
+            compactBrand.classList.remove('opacity-0', 'pointer-events-none');
+
+            mainEl.classList.add('shunting');
+            setTimeout(() => {
+                if (view === 'Work') showView('work-view');
+                else if (view === 'About') showView('about-view');
+                else {
+                    document.getElementById('generic-title').innerText = view;
+                    showView('generic-view');
+                }
+                mainEl.classList.remove('shunting');
+            }, 500);
+        }
+
+        function showView(id) {
+            ['home-view', 'work-view', 'about-view', 'generic-view'].forEach(v => document.getElementById(v).classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function playVideo(title, youtubeId) {
+            const iframe = document.getElementById('youtube-iframe');
+            const placeholder = document.getElementById('video-placeholder');
+            
+            if (youtubeId) {
+                // Using exact embed structure provided by user for maximum compatibility
+                iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&si=GwwyW3wUOnB-8y0X`;
+                iframe.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            } else {
+                iframe.src = "";
+                iframe.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                document.getElementById('current-vid-title').innerText = title;
+            }
+            
+            document.getElementById('video-grid').classList.add('hidden');
+            document.getElementById('full-player').classList.remove('hidden');
+            document.getElementById('work-view').classList.add('video-active');
+        }
+
+        function closeVideo() {
+            const iframe = document.getElementById('youtube-iframe');
+            iframe.src = "";
+            document.getElementById('video-grid').classList.remove('hidden');
+            document.getElementById('full-player').classList.add('hidden');
+            document.getElementById('work-view').classList.remove('video-active');
         }
 
         window.onload = () => {
-            const nav = document.getElementById('station-nav');
-            const vLine = document.getElementById('v-line');
-            const hLine = document.getElementById('h-line');
-            const scrap = document.getElementById('scrap-indicator');
-            
-            scrap.addEventListener('animationend', (e) => {
-                if (e.animationName === 'scrapEntrance') {
-                    scrap.classList.remove('animate-scrap-entrance');
-                    scrap.style.opacity = '1';
-                    scrap.classList.add('animate-scrap-wiggle');
-                }
-            });
-
-            const syncLines = () => {
-                const navRect = nav.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                vLine.style.left = (navRect.left + 32) + 'px';
-                
-                const firstDisc = nav.querySelector('.disc');
-                if (firstDisc) {
-                    hLine.style.top = (firstDisc.getBoundingClientRect().top + scrollTop + (firstDisc.offsetHeight / 2)) + 'px';
-                }
-            };
-
             syncLines();
             window.addEventListener('resize', syncLines);
-            
-            const observerOptions = { root: null, rootMargin: '-40% 0% -40% 0%', threshold: 0 };
+            window.addEventListener('scroll', syncLines);
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -403,42 +496,17 @@
                         entry.target.classList.remove('scrolled-active');
                     }
                 });
-            }, observerOptions);
-
+            }, { root: null, rootMargin: '-40% 0% -40% 0%', threshold: 0 });
             document.querySelectorAll('.station-link').forEach(link => observer.observe(link));
-        };
-
-        function dockLine(element) {
-            const hLine = document.getElementById('h-line');
-            const disc = element.querySelector('.disc');
-            if(!disc) return;
-            const rect = disc.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            hLine.style.top = (rect.top + scrollTop + (rect.height / 2)) + 'px';
-            const discColor = window.getComputedStyle(disc).backgroundColor;
-            hLine.style.backgroundColor = discColor;
-            hLine.style.boxShadow = `0 0 25px ${discColor}`;
-        }
-
-        function navigateTo(view, colorClass, element) {
-            const content = document.getElementById('main-content');
-            const manifest = document.getElementById('manifest-aside');
-            const polWrapper = document.getElementById('polaroid-wrapper');
-            content.classList.add('shunting');
-            setTimeout(() => {
-                if(view === 'Index') {
-                    manifest.classList.add('aside-hidden');
-                    polWrapper.classList.replace('lg:col-span-2', 'lg:col-span-3');
-                } else {
-                    manifest.classList.remove('aside-hidden');
-                    polWrapper.classList.replace('lg:col-span-3', 'lg:col-span-2');
-                    const ah = document.getElementById('aside-header');
-                    if (ah) ah.innerText = view + ' Manifest';
+            const scrap = document.getElementById('scrap-indicator');
+            scrap.addEventListener('animationend', (e) => {
+                if (e.animationName === 'scrapEntrance') {
+                    scrap.classList.remove('animate-scrap-entrance');
+                    scrap.style.opacity = '1';
+                    scrap.classList.add('animate-scrap-wiggle');
                 }
-                content.classList.remove('shunting');
-                dockLine(element);
-            }, 400);
-        }
+            });
+        };
     </script>
 </body>
 </html>
