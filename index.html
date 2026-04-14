@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en" class="scroll-smooth dark"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="utf-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Jonathan Gringauz | News &amp; Documentary Producer&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com?plugins=forms,typography"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>darkMode: "class",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>colors: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"bg-paper": "#f4f1ea",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"bg-transit": "#121212",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-red": "#ee352e",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-blue": "#0039a6",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-green": "#00933c",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-yellow": "#fccc0a",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-orange": "#ff6319",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-purple": "#b933ad",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-lime": "#6cbe45",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-brown": "#996633",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"subway-grey": "#808183",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>fontFamily: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>transit: ["Inter", "Helvetica", "Arial", "sans-serif"],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Tactile Paper Texture */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.paper-grain { position: relative; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.paper-grain::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 500;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.4;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark .paper-grain::before {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.35; filter: invert(1) brightness(0.6) contrast(1.4); mix-blend-mode: overlay;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Subway Map Line Glows */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.map-line-v { width: 8px; position: absolute; top: 0; bottom: 0; z-index: 0; transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.map-line-h { height: 8px; position: absolute; left: 0; right: 0; z-index: 0; transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1); }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glow-red { box-shadow: 0 0 25px rgba(238, 53, 46, 0.8); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glow-blue { box-shadow: 0 0 25px rgba(0, 57, 166, 0.8); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Animations */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes revealUp {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; transform: translateY(20px); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; transform: translateY(0); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes jgFloat {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0%, 100% { transform: translate(0, 0) rotate(0deg); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>33% { transform: translate(6px, -12px) rotate(4deg); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>66% { transform: translate(-4px, -6px) rotate(-3deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes scrapEntrance {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: translate(20px, 20px) rotate(0deg); opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes scrapAttentionWiggle {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0%, 90%, 100% { transform: scale(1); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>93% { transform: scale(1.1) rotate(2deg); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>96% { transform: scale(1.05) rotate(-1deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.animate-reveal { animation: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.jg-wander { animation: jgFloat 10s ease-in-out infinite; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.animate-scrap-entrance { animation: scrapEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards; opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.animate-scrap-wiggle { animation: scrapAttentionWiggle 4.5s ease-in-out infinite; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Photo Assembly */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.photo-assembly {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: rotate(3deg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 30;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.polaroid-group:hover .photo-assembly {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-20px) rotate(0deg) scale(1.06);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.polaroid {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.05);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 380px; background-color: #fff; position: relative; overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark .polaroid { background-color: #1a1a1a; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tape {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; width: 100px; height: 35px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(2px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: rotate(-2deg); top: -18px; left: 50%; margin-left: -50px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.1); z-index: 30;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.connections-toggle {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; bottom: -5px; left: -50px;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fccc0a; color: #111; padding: 6px 14px;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900; font-size: 20px; box-shadow: -5px 5px 20px rgba(0,0,0,0.4);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 50; cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>clip-path: polygon(5% 0%, 100% 10%, 95% 90%, 0% 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: -0.08em; text-transform: uppercase; white-space: nowrap;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.connections-scrap {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; right: 15px; top: 25px; width: 260px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fccc0a; padding: 32px; font-family: 'Courier New', monospace; color: #111;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 10; transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: rotate(5deg) translateX(0) scale(0.9); opacity: 0; pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>clip-path: polygon(2% 0%, 98% 2%, 100% 100%, 85% 95%, 70% 100%, 55% 95%, 40% 100%, 25% 95%, 10% 100%, 0% 95%);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.polaroid-active .connections-scrap {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 1; pointer-events: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: rotate(-4deg) translateX(-300px) translateY(20px) scale(1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: -20px 20px 50px rgba(0,0,0,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Nav &amp; Subway */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.disc { transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.vignelli-link { position: relative; text-decoration: none; display: inline-block; width: fit-content; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* TRANSIT BAR STABILITY */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: row !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 1.5rem !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0 !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0 !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 0 !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 450 !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100% !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100px !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 2rem !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: flex-end !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid currentColor !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f4f1ea !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(12px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Force children to align correctly in transit bar */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted &gt; * {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100% !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center !important;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark #station-nav.retracted { background-color: #121212 !important; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Subway Line through the menu */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: ''; position: absolute; left: 0; right: 0; top: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 4px; background: rgba(0,0,0,0.15); z-index: -1; transform: translateY(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark #station-nav.retracted::before { background: rgba(255,255,255,0.15); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted .station-link { space-x: 0.5rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted .disc {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 44px !important;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 44px !important;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem !important;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: none !important;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid rgba(0,0,0,0.1);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark #station-nav.retracted .disc { border-color: rgba(255,255,255,0.1); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted .vignelli-link { display: inline-block !important; font-size: 0.75rem !important; font-weight: 900 !important; text-transform: uppercase !important; border: none !important; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Transition logic */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.content-transition { transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.shunting { transform: translateX(100vw); opacity: 0; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Subway Train Animation (Behind Nav) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes consistMove { 0% { transform: translateX(-150%); } 100% { transform: translateX(100vw); } }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subway-consist-container { position: absolute; top: 0; left: 0; width: 100%; height: 52px; z-index: 5; pointer-events: none; overflow: visible; border-bottom: 1px solid rgba(0,0,0,0.05); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.train-track { position: absolute; bottom: 8px; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.15); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark .train-track { background: rgba(255,255,255,0.15); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subway-train-consist { position: absolute; bottom: 10px; display: flex; gap: 2px; animation: consistMove 16s linear infinite; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subway-car { position: relative; width: 85px; height: 22px; background: #222; border: 1px solid #000; display: flex; align-items: center; justify-content: center; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark .subway-car { background: #d1d1d1; border-color: #999; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.car-stripe { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; height: 4px; background: #0039a6; opacity: 0.9; z-index: 5; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.window-set { display: flex; gap: 6px; z-index: 10; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.window { width: 10px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 1px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dark .window { background: rgba(0,0,0,0.5); }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.headlight-source { position: absolute; right: 0; top: 75%; transform: translateY(-50%); width: 2px; height: 6px; background: #fff; box-shadow: 0 0 8px 1px #fff, 0 0 15px #fccc0a; border-radius: 1px; z-index: 30; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.headlight-beam { position: absolute; left: 100%; top: 75%; transform: translateY(-50%); width: 140px; height: 80px; background: linear-gradient(to right, rgba(252, 204, 10, 0.4) 0%, rgba(252, 204, 10, 0.1) 30%, transparent 100%); clip-path: polygon(0% 50%, 100% 0%, 100% 100%); filter: blur(5px); z-index: 25; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subway-car:first-child::after { content: ""; position: absolute; left: 1px; top: 75%; width: 2px; height: 3px; background: #fff; border-radius: 1px; box-shadow: 0 0 8px 3px #ee352e, 0 0 18px 6px rgba(238, 53, 46, 0.6); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fluid-name { font-size: clamp(3.5rem, 12vw, 9rem); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.compact-name { position: fixed; top: 38px; left: 2rem; z-index: 460; pointer-events: auto; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.compact-name h1 { font-size: 1.5rem; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.manifest-list { transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.video-active .manifest-list { transform: translateX(-120%); opacity: 0; pointer-events: none; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.video-active #video-container { grid-column: span 12; width: 100%; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav .home-link { display: none; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#station-nav.retracted .home-link { display: flex; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-bg-paper dark:bg-bg-transit font-transit text-black dark:text-white transition-colors duration-700 overflow-x-hidden paper-grain"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Subway Consist Animation --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="subway-consist-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="train-track"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="subway-train-consist"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;&lt;div class="car-stripe"&gt;&lt;/div&gt;&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="subway-car"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="car-stripe"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="window-set"&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;div class="window"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="headlight-source"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="headlight-beam"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Map Structure --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="v-line" class="map-line-v bg-subway-blue opacity-50 dark:opacity-40 glow-blue z-0"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="h-line" class="map-line-h bg-subway-green opacity-50 dark:opacity-40 glow-green z-0"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Persistent Brand for Bar mode --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="compact-brand" class="compact-name opacity-0 transition-opacity duration-500 pointer-events-none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 onclick="goHome()" class="uppercase cursor-pointer"&gt;Jonathan&lt;br/&gt;Gringauz&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header id="page-header" class="relative z-40 px-6 pt-28 pb-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start transition-opacity duration-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="animate-reveal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 onclick="goHome()" class="fluid-name font-black uppercase leading-[0.85] tracking-tighter mb-4 transition-transform duration-500 hover:translate-x-2 cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Jonathan&lt;br/&gt;Gringauz</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center space-x-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="bg-black text-white dark:bg-white dark:text-black px-4 py-1 text-sm font-bold uppercase tracking-widest"&gt;News &amp; Documentary Producer&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="w-3 h-3 rounded-full bg-subway-red animate-pulse"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="mt-8 md:mt-0 hidden md:flex flex-col items-end group animate-reveal" style="animation-delay: 0.2s;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center space-x-2 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-[10px] font-black opacity-40 uppercase tracking-tighter"&gt;EST. 2001&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex -space-x-1 jg-wander"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-12 h-12 bg-subway-purple rounded-full flex items-center justify-center text-white font-black text-xl italic shadow-lg"&gt;J&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-12 h-12 bg-subway-lime rounded-full flex items-center justify-center text-white font-black text-xl italic shadow-lg"&gt;G&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="relative z-40 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 pb-24 content-transition"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Navigation Container --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="nav-wrapper" class="lg:col-span-3 self-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;nav id="station-nav" class="space-y-8 relative animate-reveal transition-all duration-700" style="animation-delay: 0.4s;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" onclick="goHome()" class="home-link station-link group relative z-10 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="disc w-16 h-16 rounded-full bg-subway-grey flex items-center justify-center text-white text-3xl font-black shadow-lg group-hover:scale-110"&gt;H&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-black uppercase tracking-tighter vignelli-link"&gt;Home&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" onclick="navigateTo('Work', 'subway-blue', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="disc w-16 h-16 rounded-full bg-subway-blue flex items-center justify-center text-white text-3xl font-black shadow-lg glow-blue group-hover:scale-110"&gt;W&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-black uppercase tracking-tighter vignelli-link"&gt;Work&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" onclick="navigateTo('Studio', 'subway-green', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="disc w-16 h-16 rounded-full bg-subway-green flex items-center justify-center text-white text-3xl font-black shadow-lg glow-green group-hover:scale-110"&gt;S&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-black uppercase tracking-tighter vignelli-link"&gt;Studio&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" onclick="navigateTo('Field Notes', 'subway-orange', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="disc w-16 h-16 rounded-full bg-subway-orange flex items-center justify-center text-white text-3xl font-black shadow-lg glow-orange group-hover:scale-110"&gt;F&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-black uppercase tracking-tighter vignelli-link"&gt;Field Notes&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" onclick="navigateTo('About', 'subway-brown', this)" onmouseenter="dockLine(this)" class="station-link group flex items-center space-x-6 relative z-10 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="disc w-16 h-16 rounded-full bg-subway-brown flex items-center justify-center text-white text-3xl font-black shadow-lg"&gt;A&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-black uppercase tracking-tighter vignelli-link"&gt;About&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="main-content" class="lg:col-span-9 grid grid-cols-1 lg:grid-cols-12 gap-12 content-view"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- HOME VIEW --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="home-view" class="lg:col-span-12 flex justify-center items-center relative animate-reveal" style="animation-delay: 0.6s;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="polaroid-container" class="polaroid-group relative group cursor-pointer" onclick="togglePolaroid()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="connections-scrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-[12px] font-black border-b border-black/20 mb-4 uppercase italic"&gt;Transfer Terminal&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="space-y-5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="block text-xl font-black italic hover:translate-x-2 transition-transform"&gt;→ INSTAGRAM&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="block text-xl font-black italic hover:translate-x-2 transition-transform"&gt;→ LINKEDIN&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="block text-xl font-black italic hover:translate-x-2 transition-transform"&gt;→ EMAIL&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="photo-assembly"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="scrap-indicator" class="connections-toggle animate-scrap-entrance"&gt;CONNECTIONS&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="polaroid relative p-4 border border-black/5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="tape"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="overflow-hidden bg-gray-200 aspect-[4/5]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;img src="https://lh3.googleusercontent.com/d/1Z1C-6WN9QmaOnz1061nqQh5iI8oQiD38" alt="Portrait" class="w-full grayscale brightness-90"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="mt-4 flex justify-end px-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs font-black uppercase tracking-wider opacity-40"&gt;ENTRANCE: PLATFORM 1&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- WORK VIEW --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="work-view" class="hidden lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full pt-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="work-manifest" class="lg:col-span-4 manifest-list border-r border-black/10 dark:border-white/10 pr-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xs font-black uppercase tracking-[0.3em] mb-8 opacity-40"&gt;Work Manifest&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="group cursor-pointer" onclick="playVideo('Donna | Super 8 Short Film', 'AvXo4rchbVQ')"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-[10px] font-black opacity-30 block"&gt;SHORT FILM / 2024&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-xl font-black uppercase leading-tight group-hover:text-subway-blue"&gt;Donna | Super 8 Short Film&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="group cursor-pointer" onclick="playVideo('The Midnight Shift', '')"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-[10px] font-black opacity-30 block"&gt;DOC / 2024&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-xl font-black uppercase leading-tight group-hover:text-subway-blue"&gt;The Midnight Shift&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="video-container" class="lg:col-span-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div onclick="playVideo('Donna | Super 8 Short Film', 'AvXo4rchbVQ')" class="aspect-video bg-gray-200 dark:bg-zinc-800 relative group cursor-pointer overflow-hidden border border-black/5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="absolute inset-0 bg-subway-blue opacity-0 group-hover:opacity-40 transition-opacity"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100"&gt;&lt;span class="bg-black text-white px-4 py-2 font-black uppercase text-xs tracking-widest"&gt;PLAY FILM&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- CINEMATIC PLAYER --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="full-player" class="hidden w-full aspect-video bg-black flex flex-col items-center justify-center relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button onclick="closeVideo()" class="absolute top-4 right-4 text-white text-[10px] font-black uppercase bg-white/10 px-3 py-1 hover:bg-white/20 transition-colors z-50"&gt;Close [Esc]&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;iframe id="youtube-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;&lt;/iframe&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="video-placeholder" class="absolute inset-0 flex items-center justify-center pointer-events-none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-white uppercase font-black tracking-widest text-xl" id="current-vid-title"&gt;Video Name&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- ABOUT / CONTACT VIEW --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="about-view" class="hidden lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-12 pt-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-7xl font-black uppercase tracking-tighter border-b-8 border-black dark:border-white pb-4"&gt;About&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-2xl font-bold leading-tight"&gt;Jonathan Gringauz is a New York-based producer navigating the narratives of infrastructure and urban life.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="opacity-60 leading-relaxed"&gt;With a background in both broadcast news and cinematic documentary, Jonathan’s work bridge the gap between immediate reporting and long-term sociological study.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-8 bg-black/5 dark:bg-white/5 p-8 border border-black/10 dark:border-white/10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-6"&gt;Dispatch / Contact&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="mailto:hello@gringauz.com" class="block group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-[10px] font-black block opacity-40"&gt;DIRECT LINE&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-3xl font-black uppercase group-hover:text-subway-orange transition-colors"&gt;hello@gringauz.com&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-[10px] font-black block opacity-40"&gt;LOCATION&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-3xl font-black uppercase"&gt;BROOKLYN, NY&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Generic placeholder --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="generic-view" class="hidden lg:col-span-12 pt-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 id="generic-title" class="text-7xl font-black uppercase tracking-tighter border-b-8 border-black dark:border-white pb-4 mb-12"&gt;Studio&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl opacity-60 uppercase font-black"&gt;Content Loading...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="relative z-40 border-t border-black/10 dark:border-white/10 px-6 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center opacity-40 hover:opacity-100 transition-opacity"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="text-[10px] font-black uppercase tracking-[0.2em] mb-6 md:mb-0"&gt;© 2024 JONATHAN GRINGAUZ — NYCTA STANDARD&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Theme Toggle --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="document.documentElement.classList.toggle('dark')" class="fixed bottom-8 right-8 z-[500] w-12 h-12 bg-white dark:bg-zinc-800 rounded-full shadow-2xl flex items-center justify-center border border-black/10 hover:scale-110 active:scale-90 transition-all"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;svg class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;svg class="w-6 h-6 hidden dark:block text-subway-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function togglePolaroid() { document.getElementById('polaroid-container').classList.toggle('polaroid-active'); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const nav = document.getElementById('station-nav');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const vLine = document.getElementById('v-line');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const hLine = document.getElementById('h-line');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const mainEl = document.querySelector('main');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const headerEl = document.getElementById('page-header');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const compactBrand = document.getElementById('compact-brand');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function syncLines() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (nav.classList.contains('retracted')) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const navRect = nav.getBoundingClientRect();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vLine.style.left = (navRect.left + 32) + 'px';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const activeDisc = document.querySelector('.station-link.scrolled-active .disc') || nav.querySelector('.disc');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (activeDisc) hLine.style.top = (activeDisc.getBoundingClientRect().top + window.scrollY + (activeDisc.offsetHeight / 2)) + 'px';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function dockLine(element) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (nav.classList.contains('retracted')) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const disc = element.querySelector('.disc');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(!disc) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const rect = disc.getBoundingClientRect();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>hLine.style.top = (rect.top + window.scrollY + (rect.height / 2)) + 'px';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const discColor = window.getComputedStyle(disc).backgroundColor;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>hLine.style.backgroundColor = discColor;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function goHome() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>nav.classList.remove('retracted');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>headerEl.classList.remove('opacity-0', 'pointer-events-none');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>compactBrand.classList.add('opacity-0', 'pointer-events-none');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showView('home-view');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>closeVideo();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(syncLines, 100);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function navigateTo(view, colorClass, element) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Instant retraction state to prevent jumping</p>
+<p class="p1"><span class="Apple-converted-space">            </span>nav.classList.add('retracted');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>headerEl.classList.add('opacity-0', 'pointer-events-none');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>compactBrand.classList.remove('opacity-0', 'pointer-events-none');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>mainEl.classList.add('shunting');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (view === 'Work') showView('work-view');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>else if (view === 'About') showView('about-view');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('generic-title').innerText = view;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showView('generic-view');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mainEl.classList.remove('shunting');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 500);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showView(id) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>['home-view', 'work-view', 'about-view', 'generic-view'].forEach(v =&gt; document.getElementById(v).classList.add('hidden'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById(id).classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function playVideo(title, youtubeId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const iframe = document.getElementById('youtube-iframe');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const placeholder = document.getElementById('video-placeholder');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (youtubeId) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Using exact embed structure provided by user for maximum compatibility</p>
+<p class="p1"><span class="Apple-converted-space">                </span>iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&amp;si=GwwyW3wUOnB-8y0X`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>iframe.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>placeholder.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>iframe.src = "";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>iframe.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>placeholder.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('current-vid-title').innerText = title;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('video-grid').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('full-player').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('work-view').classList.add('video-active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function closeVideo() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const iframe = document.getElementById('youtube-iframe');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>iframe.src = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('video-grid').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('full-player').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('work-view').classList.remove('video-active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>syncLines();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('resize', syncLines);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('scroll', syncLines);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const observer = new IntersectionObserver((entries) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>entries.forEach(entry =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (entry.isIntersecting) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>entry.target.classList.add('scrolled-active');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>dockLine(entry.target);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>entry.target.classList.remove('scrolled-active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, { root: null, rootMargin: '-40% 0% -40% 0%', threshold: 0 });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.station-link').forEach(link =&gt; observer.observe(link));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const scrap = document.getElementById('scrap-indicator');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scrap.addEventListener('animationend', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (e.animationName === 'scrapEntrance') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scrap.classList.remove('animate-scrap-entrance');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scrap.style.opacity = '1';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scrap.classList.add('animate-scrap-wiggle');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
